@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="placeholder"></div>
+
+    <script type="text/javascript" th:src="@{${api}}"></script>
+    <script th:inline="javascript">
+        let config = [[${config}]];
+        console.log("===>",config)
+
+        // the application is loaded into the browser
+        let onAppReady = function () {
+
+        }
+
+        // the document is modified
+        let onDocumentStateChange = function (event) {
+
+        }
+        // the user is trying to switch the document from the viewing into the editing mode
+        let onRequestEditRights = function () {
+
+        }
+
+        // an error or some other specific event occurs
+        let onError = function (event) {
+
+        };
+
+        // the document is opened for editing with the old document.key value
+        let onOutdatedVersion = function (event) {
+
+        };
+
+        // replace the link to the document which contains a bookmark
+        let replaceActionLink = function(href, linkParam) {
+
+        }
+
+        // the user is trying to get link for opening the document which contains a bookmark, scrolling to the bookmark position
+        var onMakeActionLink = function (event) {
+
+        }
+
+        // the meta information of the document is changed via the meta command
+        var onMetaChange = function (event) {
+
+        }
+
+        var onRequestInsertImage = function(event) {
+
+        }
+
+        var onRequestCompareFile = function() {
+
+        }
+
+        var onRequestMailMergeRecipients = function (event) {
+
+        }
+        config.events = {
+            "onAppReady": onAppReady,
+            "onDocumentStateChange": onDocumentStateChange,
+            'onRequestEditRights': onRequestEditRights,
+            "onError": onError,
+            "onOutdatedVersion": onOutdatedVersion,
+            "onMakeActionLink": onMakeActionLink,
+            "onMetaChange": onMetaChange,
+            "onRequestInsertImage": onRequestInsertImage,
+            "onRequestCompareFile": onRequestCompareFile,
+            "onRequestMailMergeRecipients": onRequestMailMergeRecipients,
+        };
+
+        new DocsAPI.DocEditor("placeholder", config);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+<body>
+<form method="post" id="form">
+    <input name="username" checked placeholder="请输入名称">
+    <input name="password" checked placeholder="请输入密码">
+    <span id="btn">提交</span>
+</form>
+
+
+<script>
+    $('#btn').click(function () {
+        $.ajax({
+            url: '/login?' + $("#form").serialize(),
+            type: 'post',
+            success: function (data) {
+                if(data.code == '0') {
+                    let cookie = 'TOKEN=' + encodeURIComponent(data.data) + ';expires=-1';
+                    // 添加cookie
+                    document.cookie = cookie;
+                    window.location = "./"
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

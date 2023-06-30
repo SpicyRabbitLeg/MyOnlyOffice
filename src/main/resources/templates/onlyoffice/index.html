@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+
+<body>
+    <h1 th:text="${hh}">Hello World OnlyOffice</h1>
+    <table>
+        <thead>
+            <tr>文件名称</tr>
+            <tr>查看</tr>
+            <tr>编辑</tr>
+        </thead>
+
+
+        <thead>
+            <tr th:each="item : ${files}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.title}"></td>
+                <td th:onclick="'view(' + ${item.id} +')'">查看</td>
+                <td th:onclick="'edit(' + ${item.id} +')'">编辑</td>
+                <td th:onclick="'mobile(' + ${item.id} +')'">手机模式</td>
+                <td th:onclick="'dl(' + ${item.id} +')'">下载</td>
+            </tr>
+        </thead>
+    </table>
+
+
+    <br/>
+    <br/>
+
+    <form action="/uploadFile" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit">
+    </form>
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript">
+        function edit(id) {
+            location.href = "./edit/" + id + "?mode=edit";
+        }
+
+        function view(id) {
+            location.href = "./edit/" + id;
+        }
+
+        function mobile(id) {
+            location.href = "./edit/" + id + "?mode=edit&type=mobile";
+        }
+
+        function  dl (id){
+            window.open("./downloadFile/" + id);
+        }
+    </script>
+</body>
+
+</html>
